@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<main class="container">
+        <div class="row">
+                <div class="col-md-5 offset-md-4 mt-5">
+                        <h1 class="text-secondary">Tasks Details:</h1>
+                        <div class="card card-body">
+                                <div>
+                                        <form method="POST">
+                                                {{error}}
+                                                {% csrf_token %}
+                                                {{form.as_p}}
+                                                <button class="btn btn-primary">
+                                                        Update task
+                                                </button>
+                                        </form>
+                                </div>
+                                <div class="mt-5 d-flex justify-content-around aling-self-center">
+                                        <form action="{% url 'complete_task' task.id%}" method="POST">
+                                                {% csrf_token %}
+                                                <button class="btn btn-secondary">
+                                                        Complete task
+                                                </button>
+                                        </form>
+                                        <form action="{% url 'delete_task' task.id%}" method="POST">
+                                                {% csrf_token %}
+                                                <button class="btn btn-danger">
+                                                        Delete task
+                                                </button>
+                                        </form>
+                                </div>
+
+
+                        </div>
+
+                </div>
+
+        </div>
+</main>
+
+{% endblock %}
